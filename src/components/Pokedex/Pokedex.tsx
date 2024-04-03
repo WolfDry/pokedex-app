@@ -2,21 +2,36 @@ import React, { useState, useEffect } from 'react';
 import PokemonCard from './PokemonCard';
 import { slicePokemonsArray } from '../../utils/pokemonUtils';
 import { Pokemon } from '../../interface/Pokemon';
-import { insertPokemon } from '../../utils/insertPokemonUtils'
 import './style.css';
+import { useFetchPokemon } from '../../utils/fetchPokemonUtils';
 
 
 const Pokedex: React.FC = () => {
-  const pokemonData: Pokemon[] = require('../../data/pokemonData.json');
-  const [pokemons, setPokemons] = useState<Pokemon[]>([])
-  const [generation, setGeneration] = useState(1); // État pour suivre la génération actuellement affichée
+  const [generation, setGeneration] = useState<number>(1); // Explicitement déclaré comme un nombre
+  const [pokemonData, loading, error] = useFetchPokemon();
+  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
+  const [start, setStart] = useState<number>(0); // Explicitement déclaré comme un nombre
+  const [end, setEnd] = useState<number>(151); // Explicitement déclaré comme un nombre
 
   useEffect(() => {
-    const slice = slicePokemonsArray(generation)
-    const start = slice.start
-    const end = slice.end
-    setPokemons(pokemonData.slice(start, end))
-  }, [generation])
+    const slice = slicePokemonsArray(generation);
+    setStart(slice.start);
+    setEnd(slice.end);
+    if (pokemonData) {
+      setPokemons(pokemonData.slice(start, end));
+    }
+    if (error) {
+      console.error('Error fetching Pokemon data:', error);
+    }
+  }, [error, generation, start, end, pokemonData]); // Inclure start et end dans les dépendances
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   return (
     <div className="pokedex">

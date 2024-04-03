@@ -19,7 +19,7 @@ const PokemonCard: React.FC<Props> = ({ pokemon }) => {
   };
 
   return (
-    <div className={`pokemon-card capture-level-${pokemon.catch} `} onClick={handleClick}>
+    <div className={`pokemon-card capture-level-${pokemon.catch} ${translateType(pokemon.types[0]).slug} `} onClick={handleClick}>
       <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`} alt={pokemon.name} />
       <div className="details">
         <h2>{pokemon.frenchName}</h2> {/* Affiche le nom français du Pokémon */}

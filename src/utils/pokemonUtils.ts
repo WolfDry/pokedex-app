@@ -1,45 +1,45 @@
 // pokemonUtils.ts
 
-export const translateType = (englishType: string): { name: string; color: string } => {
+export const translateType = (englishType: string): { name: string; color: string, slug: string } => {
     switch (englishType) {
       case 'normal':
-        return { name: 'Normal', color: '#A8A77A' };
+        return { name: 'Normal', color: '#A8A77A', slug: 'normal' };
       case 'fire':
-        return { name: 'Feu', color: '#EE8130' };
+        return { name: 'Feu', color: '#EE8130', slug: 'feu' };
       case 'water':
-        return { name: 'Eau', color: '#6390F0' };
+        return { name: 'Eau', color: '#6390F0', slug: 'eau' };
       case 'electric':
-        return { name: 'Électrik', color: '#F7D02C' };
+        return { name: 'Électrik', color: '#F7D02C', slug: 'electrik' };
       case 'grass':
-        return { name: 'Plante', color: '#7AC74C' };
+        return { name: 'Plante', color: '#7AC74C', slug: 'plante' };
       case 'ice':
-        return { name: 'Glace', color: '#96D9D6' };
+        return { name: 'Glace', color: '#96D9D6', slug: 'glace' };
       case 'fighting':
-        return { name: 'Combat', color: '#C22E28' };
+        return { name: 'Combat', color: '#C22E28', slug: 'combat' };
       case 'poison':
-        return { name: 'Poison', color: '#A33EA1' };
+        return { name: 'Poison', color: '#A33EA1', slug: 'poison' };
       case 'ground':
-        return { name: 'Sol', color: '#E2BF65' };
+        return { name: 'Sol', color: '#E2BF65', slug: 'sol' };
       case 'flying':
-        return { name: 'Vol', color: '#A98FF3' };
+        return { name: 'Vol', color: '#A98FF3', slug: 'vol' };
       case 'psychic':
-        return { name: 'Psy', color: '#F95587' };
+        return { name: 'Psy', color: '#F95587', slug: 'psy' };
       case 'bug':
-        return { name: 'Insecte', color: '#A6B91A' };
+        return { name: 'Insecte', color: '#A6B91A', slug: 'insecte' };
       case 'rock':
-        return { name: 'Roche', color: '#B6A136' };
+        return { name: 'Roche', color: '#B6A136', slug: 'roche' };
       case 'ghost':
-        return { name: 'Spectre', color: '#735797' };
+        return { name: 'Spectre', color: '#735797', slug: 'spectre' };
       case 'dragon':
-        return { name: 'Dragon', color: '#6F35FC' };
+        return { name: 'Dragon', color: '#6F35FC', slug: 'dragon' };
       case 'dark':
-        return { name: 'Ténèbres', color: '#705746' };
+        return { name: 'Ténèbres', color: '#705746', slug: 'tenebre' };
       case 'steel':
-        return { name: 'Acier', color: '#B7B7CE' };
+        return { name: 'Acier', color: '#B7B7CE', slug: 'acier' };
       case 'fairy':
-        return { name: 'Fée', color: '#D685AD' };
+        return { name: 'Fée', color: '#D685AD', slug: 'fee' };
       default:
-        return { name: englishType, color: '#000000' }; // Couleur par défaut en noir si le type n'est pas trouvé
+        return { name: englishType, color: '#000000', slug: 'english' }; // Couleur par défaut en noir si le type n'est pas trouvé
     }
   };
 

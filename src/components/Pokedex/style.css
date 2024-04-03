@@ -40,7 +40,6 @@ body {
   margin: 0;
   padding: 20px 0; /* Ajustement du padding pour ne pas déborder */
   text-align: center;
-  background-color: #333; /* Fond sombre */
 }
 
 .pagination {
@@ -67,55 +66,4 @@ body {
   flex-wrap: wrap; /* Retour à la ligne automatique */
   justify-content: center; /* Centrage horizontal */
   padding: 10px 0; /* Ajoute un espace autour des cartes */
-}
-
-.pokemon-card {
-  width: calc(20% - 20px); /* Calcul de la largeur en fonction de 5 cartes par ligne avec un espacement de 20px entre les cartes */
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.2s ease-in-out, background-color 0.3s ease; /* Transition pour un changement de couleur de fond en douceur */
-  margin: 0 10px 20px; /* Espacement entre les cartes et en bas */
-  background-color: #fff; /* Fond blanc pour les cartes */
-}
-
-.pokemon-card.capture-level-1 {
-  background-color: #b0b0b0; /* Nouvelle couleur de fond lorsque le Pokémon est capturé mais pas dans la forme souhaitée */
-}
-
-.pokemon-card.capture-level-2 {
-  background-color: #909090; /* Nouvelle couleur de fond lorsque le Pokémon est capturé et dans la forme souhaitée */
-}
-
-.pokemon-card:hover {
-  transform: translateY(-5px);
-}
-
-.pokemon-card img {
-  width: 100%;
-  height: auto;
-  border-bottom: 1px solid #eee;
-}
-
-.pokemon-card .details {
-  padding: 10px;
-}
-
-.pokemon-card h2 {
-  margin: 0;
-  color: #333;
-  font-size: 1.2rem;
-  font-family: 'PokemonFont', sans-serif; /* Utilisation de la police Pokemon */
-}
-
-.pokemon-card h3 {
-  margin: 5px 0;
-  font-size: 1rem;
-  color: #666;
-  font-family: 'PokemonFont', sans-serif; /* Utilisation de la police Pokemon */
-}
-
-.pokemon-card p {
-  margin: 5px 0;
-  font-size: 0.9rem;
 }

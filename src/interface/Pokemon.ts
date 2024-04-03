@@ -1,7 +1,7 @@
 // Interface pour les données des Pokémon
 export interface Pokemon {
-    id: number;
-    name: string;
+    id: number,
+    name: string,
     frenchName: string,
     base_experience: number,
     height: number,

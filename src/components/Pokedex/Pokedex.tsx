@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PokemonCard from './PokemonCard';
 import { slicePokemonsArray } from '../../utils/pokemonUtils';
 import { Pokemon } from '../../interface/Pokemon';
+import { insertPokemon } from '../../utils/insertPokemonUtils'
 import './style.css';
 
 

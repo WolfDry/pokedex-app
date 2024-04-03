@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import pokemonData from '../data/pokemonData.json';
 
 // Fonction pour mettre à jour un Pokémon dans le stockage local

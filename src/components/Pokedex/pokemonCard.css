@@ -1,95 +1,111 @@
 /* pokemonCard.css */
 
 .pokemon-card {
+    position: relative;
     width: calc(18% - 20px);
     border-radius: 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+    transition: transform 0.2s ease-in-out;
     margin: 0 10px 20px;
     padding: 20px 10px;
-    background-color: #333;
     border: 1px #757575 solid;
 }
 
-.normal{
-    background: linear-gradient(to top, #A8A77A, #a8a77a6e, #333);
+.normal {
+    background: radial-gradient(80% 80% at 50% bottom, #A8A77A, #060e2080);
 }
 
-.feu{
-    background: linear-gradient(to top, #EE8130, #ee81306e, #333);
+.feu {
+    background: radial-gradient(80% 80% at 50% bottom, #EE8130, #060e2080);
 }
 
-.eau{
-    background: linear-gradient(to top, #6390F0, #6390F06e, #333);
+.eau {
+    background: radial-gradient(80% 80% at 50% bottom, #6390F0, #060e2080);
 }
 
-.electrik{
-    background: linear-gradient(to top, #F7D02C, #F7D02C6e, #333);
+.electrik {
+    background: radial-gradient(80% 80% at 50% bottom, #F7D02C, #060e2080);
 }
 
-.plante{
-    background: linear-gradient(to top, #7AC74C, #7AC74C6e, #333);
+.plante {
+    background: radial-gradient(80% 80% at 50% bottom, #7AC74C, #060e2080);
 }
 
-.glace{
-    background: linear-gradient(to top, #96d9d6, #96d9d66e, #333);
+.glace {
+    background: radial-gradient(80% 80% at 50% bottom, #96d9d6, #060e2080);
 }
 
-.combat{
-    background: linear-gradient(to top, #c22e28, #c22e286e, #333);
+.combat {
+    background: radial-gradient(80% 80% at 50% bottom, #c22e28, #060e2080);
 }
 
-.poison{
-    background: linear-gradient(to top, #a33ea1, #a33ea16e, #333);
+.poison {
+    background: radial-gradient(80% 80% at 50% bottom, #a33ea1, #060e2080);
 }
 
-.sol{
-    background: linear-gradient(to top, #e2bf65, #e2bf656e, #333);
+.sol {
+    background: radial-gradient(80% 80% at 50% bottom, #e2bf65, #060e2080);
 }
 
-.vol{
-    background: linear-gradient(to top, #a98ff3, #a98ff36e, #333);
+.vol {
+    background: radial-gradient(80% 80% at 50% bottom, #a98ff3, #060e2080);
 }
 
-.psy{
-    background: linear-gradient(to top, #f95587, #f955876e, #333);
+.psy {
+    background: radial-gradient(80% 80% at 50% bottom, #f95587, #060e2080);
 }
 
-.insecte{
-    background: linear-gradient(to top, #a6b91a, #a6b91a6e, #333);
+.insecte {
+    background: radial-gradient(80% 80% at 50% bottom, #a6b91a, #060e2080);
 }
 
-.roche{
-    background: linear-gradient(to top, #b6a136, #b6a1366e, #333);
+.roche {
+    background: radial-gradient(80% 80% at 50% bottom, #b6a136, #060e2080);
 }
 
-.spectre{
-    background: linear-gradient(to top, #735797, #7357976e, #333);
+.spectre {
+    background: radial-gradient(80% 80% at 50% bottom, #735797, #060e2080);
 }
 
-.dragon{
-    background: linear-gradient(to top, #6f35fc, #6f35fc6e, #333);
+.dragon {
+    background: radial-gradient(80% 80% at 50% bottom, #6f35fc, #060e2080);
 }
 
-.tenebre{
-    background: linear-gradient(to top, #705764, #7057646e, #333);
+.tenebre {
+    background: radial-gradient(80% 80% at 50% bottom, #705764, #060e2080);
 }
 
-.acier{
-    background: linear-gradient(to top, #b7b7ce, #b7b7ce6e, #333);
+.acier {
+    background: radial-gradient(80% 80% at 50% bottom, #b7b7ce, #060e2080);
 }
 
-.fee{
-    background: linear-gradient(to top, #d685ad, #d685ad6e, #333);
+.fee {
+    background: radial-gradient(80% 80% at 50% bottom, #d685ad, #060e2080);
 }
 
-.pokemon-card.capture-level-1 {
-    background-color: #b0b0b0;
+.catch {
+    position: absolute;
+    top: 50%;
+    left: -50%;
+    transform: translateY(-50%);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
 }
 
-.pokemon-card.capture-level-2 {
-    background-color: #909090;
+.pokemon-card .capture-level-0 {
+    background-image: url('../../../public/assets/svg/pokeball.svg');
+}
+
+.pokemon-card .capture-level-1 {
+    background-image: url('../../../public/assets/svg/pokeball-1.svg');
+}
+
+.pokemon-card .capture-level-2 {
+    background-image: url('../../../public/assets/svg/pokeball-2.svg');
 }
 
 .pokemon-card:hover {
@@ -97,13 +113,16 @@
 }
 
 .pokemon-card img {
+    position: relative;
     width: 100%;
     height: auto;
-    border-bottom: 1px solid #eee;
+    z-index: 1;
 }
 
 .pokemon-card .details {
+    position: relative;
     padding: 10px;
+    z-index: 1;
 }
 
 .pokemon-card h2 {

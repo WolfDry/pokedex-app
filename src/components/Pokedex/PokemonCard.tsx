@@ -1,5 +1,5 @@
 // PokemonCard.tsx
-import React, { useState } from 'react';
+import React from 'react';
 import { translateType } from '../../utils/pokemonUtils'; // Importer la fonction de traduction
 import { Pokemon } from '../../interface/Pokemon';
 import { updatePokemon } from '../../utils/updatePokemonUtils';
@@ -19,8 +19,8 @@ const PokemonCard: React.FC<Props> = ({ pokemon }) => {
   };
 
   return (
-    <div className={`pokemon-card capture-level-${pokemon.catch} ${translateType(pokemon.types[0]).slug} `} onClick={handleClick}>
-      <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`} alt={pokemon.name} />
+    <div className={`pokemon-card ${translateType(pokemon.types[0]).slug} `} onClick={handleClick}>
+      <img src={pokemon.sprites.other['official-artwork']?.front_default} alt={pokemon.name} />
       <div className="details">
         <h2>{pokemon.frenchName}</h2> {/* Affiche le nom français du Pokémon */}
         <div className="types">
@@ -34,6 +34,7 @@ const PokemonCard: React.FC<Props> = ({ pokemon }) => {
           })}
         </div>
       </div>
+      <div className={`catch capture-level-${pokemon.catch}`}></div>
     </div>
   );
 };

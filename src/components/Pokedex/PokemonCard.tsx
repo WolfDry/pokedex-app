@@ -1,5 +1,5 @@
 // PokemonCard.tsx
-import React from 'react';
+import React, { useState } from 'react';
 import { translateType } from '../../utils/pokemonUtils'; // Importer la fonction de traduction
 import { Pokemon } from '../../interface/Pokemon';
 import { updatePokemon } from '../../utils/updatePokemonUtils';
@@ -10,6 +10,7 @@ interface Props {
 }
 
 const PokemonCard: React.FC<Props> = ({ pokemon }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const handleClick = () => {
     pokemon.catch += 1
@@ -20,7 +21,16 @@ const PokemonCard: React.FC<Props> = ({ pokemon }) => {
 
   return (
     <div className={`pokemon-card ${translateType(pokemon.types[0]).slug} `} onClick={handleClick}>
-      <img src={pokemon.sprites.other['official-artwork']?.front_default} alt={pokemon.name} />
+      {!isLoaded && 
+        <div className="loader"></div>
+      }
+      <div className="pokemon-img">
+        <img
+          src={pokemon.sprites.other['official-artwork']?.front_default}
+          alt={pokemon.name}
+          onLoad={() => setIsLoaded(true)}
+        />
+      </div>
       <div className="details">
         <h2>{pokemon.frenchName}</h2> {/* Affiche le nom français du Pokémon */}
         <div className="types">

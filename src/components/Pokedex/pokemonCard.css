@@ -112,9 +112,16 @@
     transform: translateY(-5px);
 }
 
+.pokemon-card .pokemon-img{
+    width: 325px;
+    height: 325px;
+} 
+
 .pokemon-card img {
     position: relative;
+    /* max-width: 475px; */
     width: 100%;
+    max-height: 475px;
     height: auto;
     z-index: 1;
 }

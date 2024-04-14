@@ -3,12 +3,12 @@ import { initializeApp } from "firebase/app";
 
 // Votre configuration Firebase pour votre application web
 const firebaseConfig = {
-    apiKey: "AIzaSyBrM0LKiaUwbs2gloTtIlzlSxHPkljDZUM",
-    authDomain: "pokedex-6556e.firebaseapp.com",
-    projectId: "pokedex-6556e",
-    storageBucket: "pokedex-6556e.appspot.com",
-    messagingSenderId: "404864180104",
-    appId: "1:404864180104:web:e0e58bde56a5a8cacb643d",
+    apiKey: process.env.API_KEY,
+    authDomain: process.env.AUTH_DOMAIN,
+    projectId: process.env.PROJECT_ID,
+    storageBucket: process.env.STORAGE_BUCKET,
+    messagingSenderId: process.env.MESSAGING_SENDER_ID,
+    appId: process.env.APP_ID,
     databaseURL: "https://pokedex-6556e-default-rtdb.europe-west1.firebasedatabase.app"
 };
 

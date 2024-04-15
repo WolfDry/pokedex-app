@@ -39,12 +39,17 @@ const Pokedex: React.FC = () => {
     catchCount.catch = pokemons.filter(pokemon => pokemon.catch === 2).length
     catchCount.toEvolve = pokemons.filter(pokemon => pokemon.catch === 1).length
     catchCount.toCatch = pokemons.filter(pokemon => pokemon.catch === 0).length
-    
-    setCount(catchCount)    
-  }, [pokemons])  
+
+    setCount(catchCount)
+  }, [pokemons])
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loading-container">
+        <div className="loading-spinner"></div>
+        <p className="loading-text">Chargement en cours...</p>
+      </div>
+    )
   }
 
   if (error) {
@@ -67,13 +72,13 @@ const Pokedex: React.FC = () => {
       </div>
       <div className="catchCount">
         <span>
-            Pokemon capturé : {count.catch}
+          Pokemon capturé : {count.catch}
         </span>
         <span>
-            Pokemon à évoluer : {count.toEvolve}
+          Pokemon à évoluer : {count.toEvolve}
         </span>
         <span>
-            Pokemon à catpurer : {count.toCatch}
+          Pokemon à catpurer : {count.toCatch}
         </span>
       </div>
       <div className="pokemon-list">

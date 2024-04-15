@@ -4,6 +4,7 @@ import { slicePokemonsArray } from '../../utils/pokemonUtils';
 import { Pokemon } from '../../interface/Pokemon';
 import './style.css';
 import { useFetchPokemon } from '../../utils/fetchPokemonUtils';
+import Loader from '../loader/Loader';
 
 
 const Pokedex: React.FC = () => {
@@ -45,10 +46,7 @@ const Pokedex: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="loading-container">
-        <div className="loading-spinner"></div>
-        <p className="loading-text">Chargement en cours...</p>
-      </div>
+      <Loader />
     )
   }
 

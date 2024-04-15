@@ -169,13 +169,15 @@ button.top:hover svg {
   box-shadow: 0px 2px 4px rgba(173, 173, 173);
 }
 
+.catchCount {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
 .pokemon-list {
   display: flex;
-  /* Utilisation de Flexbox */
   flex-wrap: wrap;
-  /* Retour à la ligne automatique */
   justify-content: center;
-  /* Centrage horizontal */
   padding: 10px 0;
-  /* Ajoute un espace autour des cartes */
 }

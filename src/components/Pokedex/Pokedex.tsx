@@ -12,18 +12,36 @@ const Pokedex: React.FC = () => {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const [start, setStart] = useState<number>(0); // Explicitement déclaré comme un nombre
   const [end, setEnd] = useState<number>(151); // Explicitement déclaré comme un nombre
+  const [count, setCount] = useState({
+    "catch": 0,
+    "toEvolve": 0,
+    "toCatch": 0
+  })
 
   useEffect(() => {
     const slice = slicePokemonsArray(generation);
     setStart(slice.start);
     setEnd(slice.end);
     if (pokemonData) {
-      setPokemons(pokemonData.slice(start, end));
+      setPokemons(pokemonData.slice(start, end))
     }
     if (error) {
       console.error('Error fetching Pokemon data:', error);
     }
   }, [error, generation, start, end, pokemonData]); // Inclure start et end dans les dépendances
+
+  useEffect(() => {
+    let catchCount = {
+      catch: 0,
+      toEvolve: 0,
+      toCatch: 0
+    }
+    catchCount.catch = pokemons.filter(pokemon => pokemon.catch === 2).length
+    catchCount.toEvolve = pokemons.filter(pokemon => pokemon.catch === 1).length
+    catchCount.toCatch = pokemons.filter(pokemon => pokemon.catch === 0).length
+    
+    setCount(catchCount)    
+  }, [pokemons])  
 
   if (loading) {
     return <div>Loading...</div>;
@@ -46,6 +64,17 @@ const Pokedex: React.FC = () => {
             Génération {index + 1}
           </button>
         ))}
+      </div>
+      <div className="catchCount">
+        <span>
+            Pokemon capturé : {count.catch}
+        </span>
+        <span>
+            Pokemon à évoluer : {count.toEvolve}
+        </span>
+        <span>
+            Pokemon à catpurer : {count.toCatch}
+        </span>
       </div>
       <div className="pokemon-list">
         {pokemons.map((pokemon: Pokemon) => (

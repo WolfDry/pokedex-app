@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getDatabase, ref, onValue, DataSnapshot } from 'firebase/database';
 import { app } from '../firebase';
-import { Pokemon } from '../interface/Pokemon'; // Assurez-vous d'importer correctement votre interface Pokemon
+import { Pokemon } from '../interface/Pokemon';
 
 // Définir un type pour l'erreur
 type FetchError = {
@@ -52,7 +52,7 @@ export function useFetchPokemon(): [Pokemon[] | null, boolean, FetchError | null
     };
 
     fetchData();
-  }, []); // Assurez-vous de ne passer le tableau de dépendances vide, sinon cela pourrait entraîner un comportement inattendu
+  }, []);
 
   return [pokemonData, loading, error];
 }

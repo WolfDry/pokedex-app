@@ -2,34 +2,42 @@ import React, { useState, useEffect } from 'react';
 import PokemonCard from './PokemonCard';
 import { slicePokemonsArray } from '../../utils/pokemonUtils';
 import { Pokemon } from '../../interface/Pokemon';
-import './style.css';
 import { useFetchPokemon } from '../../utils/fetchPokemonUtils';
-import Loader from '../loader/Loader';
+import Loader from '../Loader/Loader';
+import SearchBar from '../SearchBar/SearchBar';
+import './style.css';
 
 
 const Pokedex: React.FC = () => {
-  const [generation, setGeneration] = useState<number>(1); // Explicitement déclaré comme un nombre
+  const [generation, setGeneration] = useState<number>(1);
   const [pokemonData, loading, error] = useFetchPokemon();
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
-  const [start, setStart] = useState<number>(0); // Explicitement déclaré comme un nombre
-  const [end, setEnd] = useState<number>(151); // Explicitement déclaré comme un nombre
+  const [start, setStart] = useState<number>(0);
+  const [end, setEnd] = useState<number>(151);
   const [count, setCount] = useState({
     "catch": 0,
     "toEvolve": 0,
     "toCatch": 0
   })
+  const [search, setSearch] = useState<string>('')
 
   useEffect(() => {
     const slice = slicePokemonsArray(generation);
     setStart(slice.start);
     setEnd(slice.end);
+
     if (pokemonData) {
-      setPokemons(pokemonData.slice(start, end))
+      const slicedPokemons = pokemonData.slice(slice.start, slice.end);
+      const filteredPokemons = slicedPokemons.filter(pokemon =>
+        pokemon.frenchName.toLowerCase().includes(search.toLowerCase())
+      );
+      setPokemons(filteredPokemons);
     }
+
     if (error) {
       console.error('Error fetching Pokemon data:', error);
     }
-  }, [error, generation, start, end, pokemonData]); // Inclure start et end dans les dépendances
+  }, [error, generation, pokemonData, search]);
 
   useEffect(() => {
     let catchCount = {
@@ -56,7 +64,10 @@ const Pokedex: React.FC = () => {
 
   return (
     <div className="pokedex">
-      <h1>Pokedex Pokémon</h1>
+      <div className='header'>
+        <h1>Pokédex Pokémon</h1>
+        <SearchBar setValue={setSearch} />
+      </div>
       <div className="pagination">
         {[...Array(9)].map((_, index) => (
           <button

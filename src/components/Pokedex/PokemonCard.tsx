@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { translateType } from '../../utils/pokemonUtils';
 import { Pokemon } from '../../interface/Pokemon';
 import { updatePokemon } from '../../utils/updatePokemonUtils';
+import Loader from '../Loader/Loader';
 import './pokemonCard.css';
-import Loader from '../loader/Loader';
 
 interface Props {
   pokemon: Pokemon

@@ -4,8 +4,8 @@ import { slicePokemonsArray } from '../../utils/pokemonUtils';
 import { Pokemon } from '../../interface/Pokemon';
 import { useFetchPokemon } from '../../utils/fetchPokemonUtils';
 import Loader from '../Loader/Loader';
-import SearchBar from '../SearchBar/SearchBar';
 import './style.css';
+import NavBar from '../NavBar/NavBar';
 
 
 const Pokedex: React.FC = () => {
@@ -27,7 +27,7 @@ const Pokedex: React.FC = () => {
     setEnd(slice.end);
 
     if (pokemonData) {
-      const slicedPokemons = pokemonData.slice(slice.start, slice.end);
+      const slicedPokemons = pokemonData.slice(start, end);
       const filteredPokemons = slicedPokemons.filter(pokemon =>
         pokemon.frenchName.toLowerCase().includes(search.toLowerCase())
       );
@@ -37,7 +37,7 @@ const Pokedex: React.FC = () => {
     if (error) {
       console.error('Error fetching Pokemon data:', error);
     }
-  }, [error, generation, pokemonData, search]);
+  }, [error, generation, pokemonData, search, start, end]);
 
   useEffect(() => {
     let catchCount = {
@@ -64,10 +64,7 @@ const Pokedex: React.FC = () => {
 
   return (
     <div className="pokedex">
-      <div className='header'>
-        <h1>Pokédex Pokémon</h1>
-        <SearchBar setValue={setSearch} />
-      </div>
+      <NavBar setSearch={setSearch} />
       <div className="pagination">
         {[...Array(9)].map((_, index) => (
           <button

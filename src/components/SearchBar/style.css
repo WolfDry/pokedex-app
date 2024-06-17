@@ -10,6 +10,7 @@
   border-radius: 100px;
   border: 4px solid white;
   padding: 5px;
+  margin-right: 5%;
 }
 
 .search-bar-container:focus-within,

@@ -104,12 +104,6 @@ button.top:hover svg {
   }
 }
 
-.header {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
 .pokedex {
   width: 100%;
   /* Utilise toute la largeur de la page */

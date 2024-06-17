@@ -1,6 +1,6 @@
 import './style.css'; // Assurez-vous de créer un fichier CSS pour les styles
 
-const Loader = () => {
+export const Loader = () => {
   return (
     <div className="loading-container">
       <div className="loading-spinner"></div>
@@ -8,5 +8,3 @@ const Loader = () => {
     </div>
   );
 };
-
-export default Loader;

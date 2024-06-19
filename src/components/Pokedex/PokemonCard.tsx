@@ -3,7 +3,7 @@ import { translateType } from '../../utils/pokemonUtils';
 import { Pokemon } from '../../interface/Pokemon';
 import { updatePokemon } from '../../utils/updatePokemonUtils';
 import './pokemonCard.css';
-import { Loader } from '../loader/Loader';
+// import { Loader } from '../Loader/Loader';
 
 interface Props {
   pokemon: Pokemon
@@ -21,9 +21,9 @@ const PokemonCard: React.FC<Props> = ({ pokemon }) => {
 
   return (
     <div className={`pokemon-card ${translateType(pokemon.types[0]).slug} `} onClick={handleClick}>
-      {!isLoaded &&
-        <Loader />
-      }
+      {/* {!isLoaded &&
+        // <Loader />
+      } */}
       <div className="pokemon-img">
         <img
           src={pokemon.sprites.other['official-artwork']?.front_default}

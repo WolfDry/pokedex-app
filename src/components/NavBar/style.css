@@ -1,13 +1,14 @@
-.header{
+.header {
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
 
-.header #title{
+.header #title {
     width: 33%;
 }
-.header #searchBar{
+
+.header #searchBar {
     display: flex;
     justify-content: flex-end;
     align-items: center;

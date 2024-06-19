@@ -1,4 +1,3 @@
-// PokemonCard.tsx
 import React, { useState } from 'react';
 import { translateType } from '../../utils/pokemonUtils';
 import { Pokemon } from '../../interface/Pokemon';

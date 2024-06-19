@@ -3,7 +3,7 @@ import PokemonCard from './PokemonCard';
 import { slicePokemonsArray } from '../../utils/pokemonUtils';
 import { Pokemon } from '../../interface/Pokemon';
 import { useFetchPokemon } from '../../utils/fetchPokemonUtils';
-// import { Loader } from '../Loader/Loader';
+import { Loader } from '../Loader/Loader';
 import './style.css';
 import NavBar from '../NavBar/NavBar';
 
@@ -53,9 +53,9 @@ const Pokedex: React.FC = () => {
   }, [pokemons])
 
   if (loading) {
-    // return (
-    // <Loader />
-    // )
+    return (
+      <Loader />
+    )
   }
 
   if (error) {

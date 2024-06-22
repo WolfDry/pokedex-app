@@ -6,6 +6,7 @@ import { useFetchPokemon } from '../../utils/fetchPokemonUtils';
 import { Loader } from '../Loader/Loader';
 import './style.css';
 import NavBar from '../NavBar/NavBar';
+import { useAuth } from '../../context/AuthContext';
 
 
 const Pokedex: React.FC = () => {
@@ -20,6 +21,7 @@ const Pokedex: React.FC = () => {
     "toCatch": 0
   })
   const [search, setSearch] = useState<string>('')
+  const { user, logout } = useAuth();
 
   useEffect(() => {
     const slice = slicePokemonsArray(generation);
@@ -51,6 +53,11 @@ const Pokedex: React.FC = () => {
 
     setCount(catchCount)
   }, [pokemons])
+
+  if (!user) {
+    return <div>Please log in to access the dashboard.</div>;
+  }
+
 
   if (loading) {
     return (

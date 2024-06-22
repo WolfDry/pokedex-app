@@ -1,7 +1,6 @@
 // AuthComponent.tsx
 import React, { useState, FormEvent } from 'react';
-import { auth } from '../../firebase';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { useAuth } from '../../context/AuthContext';
 import './style.css';
 
 const AuthComponent: React.FC = () => {
@@ -9,14 +8,15 @@ const AuthComponent: React.FC = () => {
   const [password, setPassword] = useState<string>('');
   const [isRegistering, setIsRegistering] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
+  const { login, register } = useAuth();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       if (isRegistering) {
-        await createUserWithEmailAndPassword(auth, email, password);
+        await register(email, password);
       } else {
-        await signInWithEmailAndPassword(auth, email, password);
+        await login(email, password);
       }
     } catch (err) {
       if (err instanceof Error) {

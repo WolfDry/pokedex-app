@@ -123,28 +123,3 @@ button.top:hover svg {
     transform: rotate(360deg);
   }
 }
-
-.button {
-  padding: 10px 20px;
-  border-radius: 8px;
-  border: none;
-  background: rgba(255, 255, 255, 0.2);
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.button:hover {
-  background: rgba(255, 255, 255, 0.3);
-}
-
-.logoutButton {
-  margin-top: 10px;
-  background: #ff4c4c; /* Red background for logout button */
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.logoutButton:hover {
-  background: #ff6666; /* Lighter red on hover */
-}

@@ -10,14 +10,14 @@ interface SearchBarProps {
 const NavBar: React.FC<SearchBarProps> = ({ setSearch }) => {
     return (
         <div className='header'>
-            <div id='logout'>
-                <LogoutButton/>
+            <div id="searchBar">
+                <SearchBar setValue={setSearch} />
             </div>
             <div id="title">
                 <h1>Pokédex Pokémon</h1>
             </div>
-            <div id="searchBar">
-                <SearchBar setValue={setSearch} />
+            <div id='logout'>
+                <LogoutButton />
             </div>
         </div>
     )

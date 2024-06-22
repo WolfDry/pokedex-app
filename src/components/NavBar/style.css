@@ -10,7 +10,29 @@
 
 .header #searchBar {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     width: 33%;
+}
+
+.header #logout{
+    width: 33%;
+}
+
+.header #logout .logoutButton:hover {
+    background: rgb(128, 128, 128);
+    box-shadow: 0px 6px 8px rgba(173, 173, 173, 0.7);
+}
+
+.header #logout .logoutButton {
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    background-color: transparent;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(173, 173, 173, 0.7);
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }

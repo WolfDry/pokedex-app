@@ -1,5 +1,6 @@
 import React from 'react'
 import SearchBar from '../SearchBar/SearchBar'
+import LogoutButton from '../LogoutButton'
 import './style.css'
 
 interface SearchBarProps {
@@ -9,6 +10,9 @@ interface SearchBarProps {
 const NavBar: React.FC<SearchBarProps> = ({ setSearch }) => {
     return (
         <div className='header'>
+            <div id='logout'>
+                <LogoutButton/>
+            </div>
             <div id="title">
                 <h1>Pokédex Pokémon</h1>
             </div>

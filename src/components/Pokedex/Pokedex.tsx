@@ -7,7 +7,7 @@ import { Loader } from '../Loader/Loader';
 import './style.css';
 import NavBar from '../NavBar/NavBar';
 import { useAuth } from '../../context/AuthContext';
-
+import { PokemonCatch } from '../../interface/PokemonCatch';
 
 const Pokedex: React.FC = () => {
   const [generation, setGeneration] = useState<number>(1);
@@ -19,9 +19,9 @@ const Pokedex: React.FC = () => {
     "catch": 0,
     "toEvolve": 0,
     "toCatch": 0
-  })
-  const [search, setSearch] = useState<string>('')
-  const { user } = useAuth();
+  });
+  const [search, setSearch] = useState<string>('');
+  const { user, userInfo } = useAuth();
 
   useEffect(() => {
     const slice = slicePokemonsArray(generation);
@@ -46,23 +46,20 @@ const Pokedex: React.FC = () => {
       catch: 0,
       toEvolve: 0,
       toCatch: 0
-    }
-    catchCount.catch = pokemons.filter(pokemon => pokemon.catch === 2).length
-    catchCount.toEvolve = pokemons.filter(pokemon => pokemon.catch === 1).length
-    catchCount.toCatch = pokemons.filter(pokemon => pokemon.catch === 0).length
+    };
+    catchCount.catch = pokemons.filter(pokemon => pokemon.catch === 2).length;
+    catchCount.toEvolve = pokemons.filter(pokemon => pokemon.catch === 1).length;
+    catchCount.toCatch = pokemons.filter(pokemon => pokemon.catch === 0).length;
 
-    setCount(catchCount)
-  }, [pokemons])
+    setCount(catchCount);
+  }, [pokemons]);
 
   if (!user) {
     return <div>Please log in to access the dashboard.</div>;
   }
 
-
   if (loading) {
-    return (
-      <Loader />
-    )
+    return <Loader />;
   }
 
   if (error) {
@@ -99,6 +96,8 @@ const Pokedex: React.FC = () => {
           <PokemonCard
             key={pokemon.id}
             pokemon={pokemon}
+            pokemonCatchList={userInfo ? userInfo.catch : []}
+
           />
         ))}
       </div>

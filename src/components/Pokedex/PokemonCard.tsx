@@ -1,23 +1,54 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { translateType } from '../../utils/pokemonUtils';
 import { Pokemon } from '../../interface/Pokemon';
-import { updatePokemon } from '../../utils/updatePokemonUtils';
 import './pokemonCard.css';
 import { Loader } from '../Loader/Loader';
+import { PokemonCatch } from '../../interface/PokemonCatch';
+import { updateUserCatch } from '../../utils/updateUserCatchUtils';
+import { useAuth } from '../../context/AuthContext';
 
 interface Props {
   pokemon: Pokemon
+  pokemonCatchList: PokemonCatch[]
 }
 
-const PokemonCard: React.FC<Props> = ({ pokemon }) => {
+const PokemonCard: React.FC<Props> = ({ pokemon, pokemonCatchList }) => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const { userInfo } = useAuth()
+  const [isCatch, setIsCatch] = useState<number | undefined>(0)
+
+  useEffect(() => {
+    const isCatch = pokemonCatchList.find((pokemonCatch) => pokemonCatch.pokemonId === pokemon.id)
+    setIsCatch(isCatch?.catch)
+    if (!isCatch)
+      setIsCatch(0)
+  }, [userInfo, pokemon, pokemonCatchList])
 
   const handleClick = () => {
-    pokemon.catch += 1
-    if (pokemon.catch > 2)
-      pokemon.catch = 0
-    updatePokemon(pokemon.id, pokemon)
-  };
+
+    if (!userInfo) return;
+
+    const updatedCatchList = pokemonCatchList ? pokemonCatchList : []
+    const existingPokemonCatch = updatedCatchList.find(
+      (pokemonCatch) => pokemonCatch.pokemonId === pokemon.id
+    )
+
+    if (existingPokemonCatch) {
+      existingPokemonCatch.catch += 1;
+      if (existingPokemonCatch.catch > 2) {
+        existingPokemonCatch.catch = 0;
+      }
+    } else {
+      updatedCatchList.push({ pokemonId: pokemon.id, catch: 1 });
+    }
+
+    const updatedUser = {
+      ...userInfo,
+      catch: updatedCatchList,
+    };
+
+    updateUserCatch(updatedUser, userInfo.uid)
+  }
 
   return (
     <div className={`pokemon-card ${translateType(pokemon.types[0]).slug} `} onClick={handleClick}>
@@ -44,7 +75,7 @@ const PokemonCard: React.FC<Props> = ({ pokemon }) => {
           })}
         </div>
       </div>
-      <div className={`catch capture-level-${pokemon.catch}`}></div>
+      <div className={`catch capture-level-${isCatch}`}></div>
     </div>
   );
 };

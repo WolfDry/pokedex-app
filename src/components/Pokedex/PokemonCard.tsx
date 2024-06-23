@@ -8,30 +8,28 @@ import { updateUserCatch } from '../../utils/updateUserCatchUtils';
 import { useAuth } from '../../context/AuthContext';
 
 interface Props {
-  pokemon: Pokemon
-  pokemonCatchList: PokemonCatch[]
+  pokemon: Pokemon;
+  pokemonCatchList: PokemonCatch[];
 }
 
 const PokemonCard: React.FC<Props> = ({ pokemon, pokemonCatchList }) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const { userInfo } = useAuth()
-  const [isCatch, setIsCatch] = useState<number | undefined>(0)
+  const { userInfo, refreshUserInfo } = useAuth();
+  const [isCatch, setIsCatch] = useState<number | undefined>(0);
 
   useEffect(() => {
-    const isCatch = pokemonCatchList.find((pokemonCatch) => pokemonCatch.pokemonId === pokemon.id)
-    setIsCatch(isCatch?.catch)
-    if (!isCatch)
-      setIsCatch(0)
-  }, [userInfo, pokemon, pokemonCatchList])
+    const isCatch = pokemonCatchList.find((pokemonCatch) => pokemonCatch.pokemonId === pokemon.id);
+    setIsCatch(isCatch?.catch);
+    if (!isCatch) setIsCatch(0);
+  }, [userInfo, pokemon, pokemonCatchList]);
 
-  const handleClick = () => {
-
+  const handleClick = async () => {
     if (!userInfo) return;
 
-    const updatedCatchList = pokemonCatchList ? pokemonCatchList : []
+    const updatedCatchList = pokemonCatchList ? pokemonCatchList : [];
     const existingPokemonCatch = updatedCatchList.find(
       (pokemonCatch) => pokemonCatch.pokemonId === pokemon.id
-    )
+    );
 
     if (existingPokemonCatch) {
       existingPokemonCatch.catch += 1;
@@ -47,14 +45,13 @@ const PokemonCard: React.FC<Props> = ({ pokemon, pokemonCatchList }) => {
       catch: updatedCatchList,
     };
 
-    updateUserCatch(updatedUser, userInfo.uid)
-  }
+    await updateUserCatch(updatedUser, userInfo.uid);
+    await refreshUserInfo();  // Forcer la mise à jour des informations utilisateur
+  };
 
   return (
-    <div className={`pokemon-card ${translateType(pokemon.types[0]).slug} `} onClick={handleClick}>
-      {!isLoaded &&
-        <Loader />
-      }
+    <div className={`pokemon-card ${translateType(pokemon.types[0]).slug}`} onClick={handleClick}>
+      {!isLoaded && <Loader />}
       <div className="pokemon-img">
         <img
           src={pokemon.sprites.other['official-artwork']?.front_default}

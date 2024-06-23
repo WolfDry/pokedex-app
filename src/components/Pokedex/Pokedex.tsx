@@ -21,7 +21,7 @@ const Pokedex: React.FC = () => {
     "toCatch": 0
   })
   const [search, setSearch] = useState<string>('')
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
 
   useEffect(() => {
     const slice = slicePokemonsArray(generation);

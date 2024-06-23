@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { auth } from '../firebase';
+import { auth, database } from '../firebase';
 import { User, onAuthStateChanged, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import { ref, set } from 'firebase/database';
 
 interface AuthContextProps {
   user: User | null;
@@ -23,7 +24,14 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   };
 
   const register = async (email: string, password: string) => {
-    await createUserWithEmailAndPassword(auth, email, password);
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const userId = userCredential.user.uid;
+    
+    // Enregistrez les informations de l'utilisateur dans la Realtime Database
+    await set(ref(database, 'users/' + userId), {
+      email: email,
+      uid: userId,
+    });
   };
 
   const logout = async () => {
